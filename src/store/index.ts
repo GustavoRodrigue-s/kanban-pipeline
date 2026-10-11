@@ -4,14 +4,15 @@
  * a store diretamente — usam os hooks tipados de ./hooks.
  */
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { boardReducer } from '@/features/board/boardSlice';
 import { filterReducer } from '@/features/filter/filterSlice';
 
 // combineReducers separado do configureStore para que o RootState possa ser
 // inferido do reducer (e não da store). Isso permite criar stores de teste
 // com `preloadedState` tipado — ver setupStore abaixo.
 const rootReducer = combineReducers({
+  board: boardReducer,
   filter: filterReducer,
-  // board: boardReducer,  ← Etapa 1 (você)
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -23,6 +24,7 @@ export function setupStore(preloadedState?: Partial<RootState>) {
     reducer: rootReducer,
     preloadedState,
     // middleware: (getDefault) => getDefault().prepend(listenerMiddleware.middleware)  ← Etapa 2 (você)
+    // Hidratação a partir do localStorage                                              ← Etapa 2 (você)
     // devTools fica ligado por padrão em dev (DoD: "Redux DevTools funcionando").
   });
 }

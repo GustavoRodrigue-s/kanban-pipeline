@@ -1,0 +1,77 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.heading {
+  flex: 1;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.01em;
+}
+
+.close {
+  width: 44px;
+  height: 44px;
+  margin-right: -8px;
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: -12px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.stageRing {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid;
+}
+
+.stageNum {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.footer > button {
+  flex: 1;
+}
+
+.spacer {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .close {
+    width: 36px;
+    height: 36px;
+  }
+
+  .footer > button {
+    flex: none;
+  }
+
+  .spacer {
+    display: block;
+    flex: 1;
+  }
+}

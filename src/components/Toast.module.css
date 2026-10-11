@@ -1,0 +1,89 @@
+.toast {
+  position: fixed;
+  z-index: var(--z-toast);
+  left: 50%;
+  bottom: calc(96px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  max-width: calc(100vw - 32px);
+  padding: 0 6px 0 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-toast-bg);
+  color: var(--color-toast-text);
+  font-size: var(--font-size-md);
+  white-space: nowrap;
+  box-shadow: var(--shadow-raised);
+  animation: toast-in var(--duration-base) var(--ease-standard);
+}
+
+@media (min-width: 640px) {
+  .toast {
+    bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+}
+
+.toast[data-state='closing'] {
+  animation: toast-out var(--duration-fast) var(--ease-exit) forwards;
+}
+
+.action {
+  height: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-toast-action);
+  font-weight: var(--font-weight-semibold);
+}
+
+.action:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.toast :focus-visible {
+  outline: 2px solid var(--color-toast-action);
+  outline-offset: -2px;
+}
+
+.close {
+  color: var(--color-toast-text);
+  opacity: 0.8;
+  border-radius: var(--radius-sm);
+}
+
+.close:hover {
+  opacity: 1;
+  color: var(--color-toast-text);
+  background: rgb(255 255 255 / 0.12);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+}
+
+@keyframes toast-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: toast-fade 100ms linear;
+  }
+  .toast[data-state='closing'] {
+    animation: toast-out 100ms linear forwards;
+  }
+}
+
+@keyframes toast-fade {
+  from {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,146 @@
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: var(--color-scrim);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fade-in var(--duration-base) var(--ease-standard);
+}
+
+.scrim[data-state='closing'] {
+  animation: fade-out var(--duration-fast) var(--ease-exit) forwards;
+  pointer-events: none;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-modal);
+  color: var(--color-text);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.panel:focus {
+  outline: none;
+}
+
+/* Formulário: bottom sheet no mobile */
+.form {
+  width: 100%;
+  max-height: 92%;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+  gap: 20px;
+  animation: sheet-in var(--duration-slow) var(--ease-standard);
+}
+
+.scrim[data-state='closing'] .form {
+  animation: sheet-out var(--duration-fast) var(--ease-exit) forwards;
+}
+
+.handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-border-hover);
+  margin: -8px auto -16px;
+  flex: none;
+}
+
+/* Confirmação: cartão centralizado */
+.confirm {
+  width: 420px;
+  max-width: calc(100% - 32px);
+  margin-bottom: calc(16px + env(safe-area-inset-bottom));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  gap: 12px;
+  animation: panel-in var(--duration-base) var(--ease-standard);
+}
+
+.scrim[data-state='closing'] .confirm {
+  animation: panel-out var(--duration-fast) var(--ease-exit) forwards;
+}
+
+@media (min-width: 640px) {
+  .scrim {
+    align-items: center;
+    padding: 16px;
+  }
+
+  .form {
+    width: 520px;
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    animation: panel-in var(--duration-base) var(--ease-standard);
+  }
+
+  .scrim[data-state='closing'] .form {
+    animation: panel-out var(--duration-fast) var(--ease-exit) forwards;
+  }
+
+  .handle {
+    display: none;
+  }
+
+  .confirm {
+    margin-bottom: 0;
+  }
+}
+
+/* Movimento reduzido: só fade de 100 ms, sem deslocamento */
+@media (prefers-reduced-motion: reduce) {
+  .scrim,
+  .form,
+  .confirm,
+  .scrim[data-state='closing'] .form,
+  .scrim[data-state='closing'] .confirm {
+    animation: fade-in 100ms linear;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes panel-out {
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes sheet-out {
+  to {
+    transform: translateY(100%);
+  }
+}

@@ -1,13 +1,63 @@
-.root {
-  min-height: 100%;
+.app {
+  height: 100vh;
+  height: 100dvh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg);
 }
 
-.title {
+.main {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.main:focus {
+  outline: none;
+}
+
+.skipLink {
+  position: absolute;
+  z-index: var(--z-toast);
+  top: 8px;
+  left: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skipLink:focus-visible {
+  transform: none;
+}
+
+.mobileBar {
+  flex: none;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+}
+
+.mobileAdd {
+  width: 100%;
   font-size: 0.9375rem;
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: -0.01em;
+}
+
+/* Telas muito baixas (ex.: zoom de 400%): a página rola em vez de espremer o quadro. */
+@media (max-height: 480px) {
+  .app {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .main {
+    flex: none;
+    height: 480px;
+  }
 }

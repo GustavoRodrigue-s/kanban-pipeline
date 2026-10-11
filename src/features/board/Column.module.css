@@ -1,0 +1,137 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  height: 100%;
+  flex: none;
+  width: 85vw;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .column {
+    width: 330px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .column {
+    width: auto;
+  }
+}
+
+/* Cabeçalho de etapa: anel + número + nome + contador + linha do pipeline */
+.header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  margin-bottom: 8px;
+}
+
+.ring {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid;
+  background: var(--color-bg);
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.name {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  white-space: nowrap;
+}
+
+/* A linha atravessa o espaço entre colunas até o anel da próxima etapa. */
+.line {
+  flex: 1;
+  min-width: 12px;
+  height: 1px;
+  background: var(--color-border-hover);
+  margin-right: -14px;
+}
+
+@media (min-width: 640px) {
+  .line {
+    margin-right: -18px;
+  }
+}
+
+.lineLast {
+  margin-right: 0;
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-bottom: 72px;
+  border-radius: var(--radius-lg);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--color-surface-sunken);
+  border: 1px solid transparent;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
+}
+
+.dropTarget {
+  background: var(--color-primary-subtle);
+  border: 1px dashed var(--color-primary);
+}
+
+.dropLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 4px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dropHint {
+  flex: none;
+  height: 96px;
+  border: 1px dashed var(--color-border-hover);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.noMatch {
+  padding: 20px 12px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.emptyBoard {
+  padding: 40px 16px 32px;
+}

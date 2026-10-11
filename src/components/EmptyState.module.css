@@ -1,0 +1,29 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.icon {
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  text-wrap: pretty;
+}
+
+.description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-normal);
+}
+
+.action {
+  margin-top: 12px;
+}
