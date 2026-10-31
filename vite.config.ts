@@ -4,8 +4,10 @@ import { defineConfig } from 'vite';
 
 // `base` = nome do repositório no GitHub Pages (https://<user>.github.io/kanban-pipeline/)
 export default defineConfig({
-  base: '/kanban-pipeline/',
   plugins: [react()],
+  server: {
+    port: 3000,
+  },
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
